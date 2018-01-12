@@ -1,0 +1,10 @@
+{
+  "name": "react-tutorial",
+  "version": "1.0.0",
+  "description": "React tutorial",
+  "main": "index.html",
+  "author": "Anton Drozd",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  }
+}
