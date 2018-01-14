@@ -46,7 +46,7 @@ class ContactsList extends React.Component {
 	}
 
 	handleSearch = (event) => {
-		var searchQuery = event.target.value.toLowerCase();
+		var searchQuery = event.target.value.toLowerCase().trim();
 		var displayedContacts = CONTACTS.filter(function(el) {
 			var searchValue = el.name.toLowerCase();
 			return searchValue.indexOf(searchQuery) !== -1;
@@ -71,10 +71,10 @@ class ContactsList extends React.Component {
 								phoneNumber={el.phoneNumber}
 								image={el.image}
 							/>;
-					   })
+					  })
 					}
 				</ul>}
-			</div>
+		</div>
 		)
 	}
 }
