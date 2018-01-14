@@ -1,80 +1,54 @@
 const root = document.getElementById('root');
 
-const CONTACTS = [
-	{
-	    id: 1,
-	    name: 'Darth Vader',
-	    phoneNumber: '+250966666666',
-	    image: 'img/darth.gif'
-	}, {
-	    id: 2,
-	    name: 'Princess Leia',
-	    phoneNumber: '+250966344466',
-	    image: 'img/leia.gif'
-	}, {
-	    id: 3,
-	    name: 'Luke Skywalker',
-	    phoneNumber: '+250976654433',
-	    image: 'img/luke.gif'
-	}, {
-	    id: 4,
-	    name: 'Chewbacca',
-	    phoneNumber: '+250456784935',
-	    image: 'img/chewbacca.gif'
+let contactObjCounter = 0;
+
+class ContactObj {
+	constructor(name, phone, imgsrc) {
+		this.id = ++contactObjCounter;
+		this.name = name;
+		this.phone = phone;
+		this.image = imgsrc;
 	}
-];
+}
 
-const Contact = React.createClass({
-  render: function() {
-    return (
-      <li className="contact">
-        <img className="contact-image" src={this.props.image} width="60px" height="60px" />
-        <div className="contact-info">
-          <div className="contact-name"> {this.props.name} </div>
-          <div className="contact-number"> {this.props.phoneNumber} </div>
-        </div>
-      </li>
-    );
-  }
-});
+const CONTACTS = [
+	new ContactObj('Anton Drozd', '+1234567890', 'img/anton.jpg'),
+	new ContactObj('Kirill Buga', '+1234567890', 'img/kirill.jpg'),
+	new ContactObj('Diana Buga', '+1234567890', 'img/diana.jpg'),
+	new ContactObj('Anastasia Ushakova', '+1234567890', 'img/nastya.jpg'),
+	new ContactObj('Kateryna Alekseyenko', '+1234567890', 'img/katya.jpg'),
+	new ContactObj('Mark Getman', '+1234567890', 'img/mark.jpg'),
+	new ContactObj('Bohdan Kushpler', '+1234567890', 'img/bohdan.jpg'),
+	new ContactObj('Iryna Sliusarenko', '+1234567890', 'img/ira.jpg')
+]
 
-const ContactsList = React.createClass({
-    getInitialState: function() {
-      return {
-          displayedContacts: CONTACTS
-      };
-    },
-    handleSearch: function(event) {
-      var searchQuery = event.target.value.toLowerCase().trim();
-      var displayedContacts = CONTACTS.filter(function(el) {
-          var searchValue = el.name.toLowerCase();
-          return searchValue.indexOf(searchQuery) !== -1;
-      });
-      this.setState({
-          displayedContacts: displayedContacts
-      });
-    },
-    render: function() {
-      return (
-        <div className="contacts">
-        	<div className="search-field">
-          	<input type="text" placeholder="Search..." onChange={this.handleSearch} />
-          </div>
-          <ul className="contacts-list">
-            {
-             this.state.displayedContacts.map(function(el) {
-              return <Contact
-                  key={el.id}
-                  name={el.name}
-                  phoneNumber={el.phoneNumber}
-                  image={el.image}
-              		/>;
-             })
-            }
-          </ul>
-        </div>
-      );
-    }
-});
+
+
+class Contact extends React.Component {
+	render() {
+		const blockName = 'contact-item';
+		return (
+			<li className={blockName}>
+				<img className={`${blockName}__photo`} src={this.props.image} />
+				<span className={`${blockName}__name`}>{this.props.name}</span>
+				<span className={`${blockName}__phone`}>{this.props.phone}</span>
+			</li>
+		)
+	}
+}
+
+class ContactsList extends React.Component {
+	render() {
+		return (
+			<ul>
+				{
+					CONTACTS.map(function (el) {
+						return <Contact key={el.id} name={el.name} phone={el.phone} image={el.image} />
+					})
+				}
+			</ul>
+		)
+	}
+}
 
 ReactDOM.render(<ContactsList />, root);
