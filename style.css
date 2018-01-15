@@ -3,37 +3,49 @@
 	margin: 0 auto;
 }
 
-.search-field input {
+.contacts__search-field-wrapper {
+	width: 100%;
+}
+
+.contacts__search-field-wrapper input {
+	box-sizing: border-box;
 	width: 100%;
 	padding: 10px;
 	font-size: 16px;
 }
 
-.contacts-list {
+.contacts__list {
 	padding: 0;
 	width: 100%;
 }
 
-.contact {
+.contact-item {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
-	font-family: sans-serif;
+	box-sizing: border-box;
 	width: 100%;
 	padding: 5px;
+	font-family: sans-serif;
 	border-bottom: 1px dotted grey;
 }
 
-.contact-image {
-		border-radius: 50%;
-		margin: 5px;
+.contact-item__photo {
+	width: 60px;
+	height: 60px;
+	margin: 5px;
+	border-radius: 50%;
 }
 
-.contact-name {
+.contact-item__name {
+	display: block;
 	font-size: 20px;
 	font-weight: bold;
 }
 
-.contact-number {
+.contact-item__phone {
+	display: block;
+	width: 100%;
 	font-size: 18px;
 	color: grey;
 }

@@ -23,30 +23,52 @@ const CONTACTS = [
 ]
 
 
-
 class Contact extends React.Component {
 	render() {
 		const blockName = 'contact-item';
 		return (
 			<li className={blockName}>
 				<img className={`${blockName}__photo`} src={this.props.image} />
-				<span className={`${blockName}__name`}>{this.props.name}</span>
-				<span className={`${blockName}__phone`}>{this.props.phone}</span>
+				<div className={`${blockName}__info`}>
+					<span className={`${blockName}__name`}>{this.props.name}</span>
+					<span className={`${blockName}__phone`}>{this.props.phone}</span>
+				</div>
 			</li>
 		)
 	}
 }
 
+
 class ContactsList extends React.Component {
+	state = {
+		displayedContacts: CONTACTS
+	}
+
+	handleSearch = (event) => {
+		let searchValue = event.target.value.toLowerCase().trim();
+		let filtredContacts = CONTACTS.filter(function (el) {
+			return el.name.toLowerCase().indexOf(searchValue) !== -1;
+		})
+		this.setState({
+			displayedContacts: filtredContacts
+		})
+	}
+
 	render() {
+		const blockName = 'contacts';
 		return (
-			<ul>
-				{
-					CONTACTS.map(function (el) {
-						return <Contact key={el.id} name={el.name} phone={el.phone} image={el.image} />
-					})
-				}
-			</ul>
+			<div className={blockName}>
+				<div className={`${blockName}__search-field-wrapper`}>
+					<input type='text' placeholder='Search...' onChange={this.handleSearch} />
+				</div>
+				<ul className={`${blockName}__list`}>
+					{
+						this.state.displayedContacts.map(function (el) {
+							return <Contact key={el.id} name={el.name} phone={el.phone} image={el.image} />
+						})
+					}
+				</ul>
+			</div>
 		)
 	}
 }
