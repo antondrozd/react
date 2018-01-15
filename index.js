@@ -90,7 +90,14 @@ class ContactsList extends React.Component {
 				<ul className={`${blockName}__list`}>
 					{
 						this.state.displayedContacts.map(function (el) {
-							return <Contact key={el.id} name={el.name} phone={el.phone} image={el.image} adress={el.adress} email={el.email} />
+							return <Contact
+								key={el.id}
+								name={el.name}
+								phone={el.phone}
+								image={el.image}
+								adress={el.adress}
+								email={el.email}
+							/>
 						})
 					}
 				</ul>
