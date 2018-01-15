@@ -1,5 +1,5 @@
 .contacts {
-	width: 300px;
+	width: 350px;
 	margin: 0 auto;
 }
 
@@ -28,9 +28,15 @@
 	padding: 5px;
 	font-family: sans-serif;
 	border-bottom: 1px dotted grey;
+	cursor: pointer;
+}
+
+.contact-item:hover {
+	background-color: #f9f4ff;
 }
 
 .contact-item__photo {
+	align-self: flex-start;
 	width: 60px;
 	height: 60px;
 	margin: 5px;
@@ -48,4 +54,24 @@
 	width: 100%;
 	font-size: 18px;
 	color: grey;
+}
+
+.contact-item__adress {
+	display: block;
+	margin-top: 10px;
+}
+
+.contact-item__email {
+	display: block;
+}
+
+.contact-item__state-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	margin-left: auto;
+	font-size: 14px;
 }
