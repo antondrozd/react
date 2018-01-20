@@ -37,7 +37,7 @@ class NotesApp extends React.Component {
 class NoteEditor extends React.Component {
 	state = {
 		text: '',
-		color: 'green'
+		color: 'yellow'
 	}
 
 	handleTextChange = () => {
@@ -62,6 +62,12 @@ class NoteEditor extends React.Component {
 		})
 	}
 
+	handleColorChange = (newColor) => {
+		this.setState({
+			color: newColor
+		})
+	}
+
 	render() {
 		return (
 			<div className='note-editor'>
@@ -75,12 +81,12 @@ class NoteEditor extends React.Component {
 					onKeyDown={(event) => {
 						if (event.key == 'Enter') {
 							event.preventDefault();
-							this.handleNoteAdd();
+							if (this.state.text.trim()) this.handleNoteAdd();
 						}
 					}}
 				/>
 				<div className='controls'>
-					<NoteColorPanel />
+					<NoteColorsPanel onColorChange={this.handleColorChange} />
 					<button className='add-button' onClick={this.handleNoteAdd}>Add</button>
 				</div>
 			</div>
@@ -88,8 +94,8 @@ class NoteEditor extends React.Component {
 	}
 }
 
-class NoteColorPanel extends React.Component {
-	colors = ['red', 'yellow', 'green', 'blue', 'orange', 'pink']
+class NoteColorsPanel extends React.Component {
+	colors = ['yellow', 'red', 'green', 'blue', 'orange', 'pink']
 
 	state = {
 		currentColor: this.colors[0]
@@ -100,6 +106,7 @@ class NoteColorPanel extends React.Component {
 		this.setState({
 			currentColor: newColor
 		})
+		this.props.onColorChange(newColor);
 	}
 
 	render () {
