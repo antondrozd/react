@@ -66,6 +66,7 @@ class NoteEditor extends React.Component {
 		this.setState({
 			color: newColor
 		})
+		 this.refs.textarea.focus();
 	}
 
 	render() {
