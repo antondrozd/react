@@ -23,11 +23,20 @@ class NotesApp extends React.Component {
 		})
 	}
 
+	handleDeleteAll = () => {
+		if (confirm('All notes will be deleted')) {
+			this.setState({
+				notes: []
+			})
+		}
+	}
+
 	render() {
 		return (
 			<div className='notes-app'>
 				<h2 className='app-header'>NotesApp</h2>
 				<NoteEditor onNoteAdd={this.handleNoteAdd} />
+				<button className='delete-all' onClick={this.handleDeleteAll}>Delete all notes</button>
 				<NotesGrid notes={this.state.notes} onNoteDelete={this.handleNoteDelete} />
 			</div>
 		)
