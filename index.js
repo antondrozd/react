@@ -24,7 +24,7 @@ class NotesApp extends React.Component {
 	}
 
 	handleDeleteAll = () => {
-		if (confirm('All notes will be deleted')) {
+		if (confirm('Are you sure? All notes will be deleted')) {
 			this.setState({
 				notes: []
 			})
