@@ -57,18 +57,20 @@ class NoteEditor extends React.Component {
 	}
 
 	handleNoteAdd = () => {
-		let newNote = {
-			id: Date.now(),
-			text: this.state.text,
-			color: this.state.color
-		};
+		if (this.state.text.trim()) {
+			let newNote = {
+				id: Date.now(),
+				text: this.state.text,
+				color: this.state.color
+			};
 
-		this.props.onNoteAdd(newNote);
-		this.refs.textarea.focus();
+			this.props.onNoteAdd(newNote);
+			this.refs.textarea.focus();
 
-		this.setState({
-			text: ''
-		})
+			this.setState({
+				text: ''
+			})
+		}
 	}
 
 	handleColorChange = (newColor) => {
@@ -91,7 +93,7 @@ class NoteEditor extends React.Component {
 					onKeyDown={(event) => {
 						if (event.key == 'Enter') {
 							event.preventDefault();
-							if (this.state.text.trim()) this.handleNoteAdd();
+							this.handleNoteAdd();
 						}
 					}}
 				/>
